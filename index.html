@@ -1,77 +1,258 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Daisy Song · Portfolio</title>
+  <meta name="description" content="Full-stack developer & aspiring data scientist. Projects in Django, MERN, and data-driven apps." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background:#0b0c10; color:#e9eef5; margin:0; }
-    .wrap { max-width:1000px; margin:auto; padding:20px; }
-    header, footer { display:flex; justify-content:space-between; align-items:center; }
-    nav a { color:#b7c0cc; margin-left:12px; text-decoration:none; }
-    h1,h2 { margin-top:0; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
-    .card { background:#11131a; border-radius:12px; padding:16px; }
-    .btn { display:inline-block; margin-right:8px; padding:8px 12px; border-radius:6px;
-           text-decoration:none; font-weight:600; }
-    .live { background:#7fd1ae; color:#08120c; }
-    .ghost { border:1px solid #2a3345; color:#e9eef5; }
+    :root {
+      --bg: #0b1020;        /* page background */
+      --bg-2:#0e1428;       /* panels */
+      --card: rgba(255,255,255,0.04);
+      --ink: #e6edf7;       /* main text */
+      --muted:#a9b3c7;      /* secondary text */
+      --stroke: rgba(148,163,184,.25);
+      --accent:#7dd3fc;     /* cyan-300 */
+      --accent-2:#22d3ee;   /* cyan-400 */
+      --success:#34d399;
+      --chip:#121a33;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(2,8,23,.35);
+      --shadow-soft: 0 8px 18px rgba(2,8,23,.2);
+    }
+    [data-theme="light"] {
+      --bg: #f6f7fb;
+      --bg-2:#ffffff;
+      --card: rgba(0,0,0,0.05);
+      --ink: #0b1220;
+      --muted:#475569;
+      --stroke: rgba(2,8,23,.08);
+      --accent:#0891b2;
+      --accent-2:#06b6d4;
+      --chip:#eef2ff;
+      --shadow: 0 10px 30px rgba(2,8,23,.08);
+      --shadow-soft: 0 8px 18px rgba(2,8,23,.06);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 0% -10%, #0ea5e9 0%, transparent 50%),
+        radial-gradient(900px 500px at 100% 0%, #22d3ee33 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg) 0%, #0a0f1d 100%);
+      background-attachment: fixed;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.4) blur(6px); background: linear-gradient(180deg, rgba(10,15,29,.8), rgba(10,15,29,.2)); border-bottom: 1px solid var(--stroke); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px; }
+    .avatar { width:36px; height:36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display:grid; place-items:center; color:#001018; font-weight:800; box-shadow: var(--shadow-soft); }
+    .nav a { color: var(--muted); text-decoration: none; margin-left: 14px; font-weight: 600; }
+    .nav a:hover, .nav a:focus { color: var(--ink); outline: none; }
+
+    .toggle { border: 1px solid var(--stroke); background: var(--card); color: var(--ink); padding: 8px 10px; border-radius: 999px; cursor: pointer; font-weight: 700; }
+    .toggle:hover { transform: translateY(-1px); }
+
+    /* Hero */
+    .hero { display:grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; padding: 28px 0 10px; }
+    .kicker { color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing:.14em; font-size:12px; }
+    h1 { font-size: clamp(28px, 5vw, 42px); margin: 8px 0; }
+    .lead { color: var(--muted); line-height: 1.7; }
+    .cta { display:flex; flex-wrap:wrap; gap: 12px; margin-top: 16px; }
+    .btn { display:inline-flex; align-items:center; gap:10px; text-decoration:none; font-weight:800; border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow-soft); }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color:#031217; }
+    .btn.ghost { border: 1px solid var(--stroke); color: var(--ink); background: var(--card); }
+
+    .hero-card { background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+    .chip { background: var(--chip); color: var(--muted); border:1px solid var(--stroke); border-radius: 999px; padding: 8px 12px; font-size: 13px; }
+
+    /* Sections */
+    section { margin: 34px 0; }
+    h2 { font-size: 22px; margin: 0 0 14px; }
+
+    /* Projects */
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } .hero { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+
+    .card { display:flex; flex-direction:column; gap:12px; background: var(--card); border: 1px solid var(--stroke); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow-soft); transition: transform .2s ease, box-shadow .2s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .thumb { height: 160px; border-radius: 14px; background:
+      radial-gradient(400px 200px at 30% 0%, #22d3ee22 0%, transparent 50%),
+      linear-gradient(135deg, #0f172a, #0b1020);
+      border:1px solid var(--stroke);
+    }
+    .card h3 { margin: 2px 0 6px; font-size: 18px; }
+    .meta { display:flex; flex-wrap:wrap; gap:8px; }
+    .pill { font-size:12px; background: #11182766; border:1px solid var(--stroke); border-radius:999px; padding:6px 10px; color: #cdd6e5; }
+    .desc { color: var(--muted); line-height: 1.6; margin: 0; }
+    .links { display:flex; gap:10px; margin-top:auto; }
+
+    /* Skills */
+    .skills { display:flex; flex-wrap:wrap; gap:10px; }
+
+    /* Footer */
+    footer { margin: 30px 0; padding-top: 14px; border-top: 1px solid var(--stroke); color: var(--muted); }
+
+    /* Utility */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Daisy Song</h1>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">DS</div>
+        <div>Daisy Song</div>
+      </div>
       <nav>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
+        <button class="toggle" id="themeToggle" aria-label="Toggle dark/light">☾/☀︎</button>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <section>
-      <h2>About Me</h2>
-      <p>Full-stack developer & aspiring data scientist. GA SEI graduate (420+ hrs). Experienced in Python/Django, MERN stack, and cloud deployments.</p>
+  <main class="container">
+    <section class="hero" aria-labelledby="sect-hero">
+      <div>
+        <div class="kicker">Full-stack · Data-curious</div>
+        <h1 id="sect-hero">Building data-driven web apps with Python/Django & MERN</h1>
+        <p class="lead">GA SEI graduate (420+ hrs). I ship pragmatic products: API integrations, auth, cloud deploys (Heroku/GitHub Pages), and clean UIs. Currently applying to MS programs in Computing/Data Sciences.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/Daisybala" target="_blank" rel="noopener" aria-label="Open GitHub">
+            <span>GitHub</span>
+          </a>
+          <a class="btn ghost" href="mailto:qiliansong@gmail.com" aria-label="Email Daisy">
+            <span>Email me</span>
+          </a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Highlights">
+        <strong>What I work with</strong>
+        <div class="chips" aria-hidden="true">
+          <span class="chip">Python</span><span class="chip">Django</span><span class="chip">Postgres/Neon</span>
+          <span class="chip">AWS S3</span><span class="chip">JavaScript</span><span class="chip">Node/Express</span>
+          <span class="chip">MongoDB/Mongoose</span><span class="chip">HTML/CSS</span><span class="chip">Heroku</span>
+        </div>
+      </aside>
     </section>
 
-    <section id="projects">
-      <h2>Featured Projects</h2>
+    <section id="projects" aria-labelledby="sect-projects">
+      <h2 id="sect-projects">Projects</h2>
       <div class="grid">
-        <div class="card">
-          <h3>Taste Rater</h3>
-          <p>Django + Yelp API app for restaurant discovery. Deployed on Heroku with Neon Postgres and S3.</p>
-          <a class="btn live" href="https://tasterater-51d5ecc29cf9.herokuapp.com" target="_blank">Live Demo</a>
-          <a class="btn ghost" href="https://github.com/Daisybala/tasterater" target="_blank">GitHub</a>
-        </div>
-        <div class="card">
-          <h3>Calendar App</h3>
-          <p>Node/Express + Mongo app for tasks & events. OAuth login, day/week/month views. Deployed to Heroku.</p>
-          <a class="btn live" href="https://calendar-2024-fcb433cb3fdb.herokuapp.com" target="_blank">Live Demo</a>
-          <a class="btn ghost" href="https://github.com/Daisybala/calendar" target="_blank">GitHub</a>
-        </div>
-        <div class="card">
-          <h3>Super Hero Memory Game</h3>
-          <p>Vanilla JS card matching game with animations and responsive design. Hosted on GitHub Pages.</p>
-          <a class="btn live" href="https://daisybala.github.io" target="_blank">Live Demo</a>
-          <a class="btn ghost" href="https://github.com/Daisybala/concentration" target="_blank">GitHub</a>
-        </div>
+        <!-- Taste Rater -->
+        <article class="card" aria-labelledby="prj-tr">
+          <div class="thumb" role="img" aria-label="Taste Rater screenshot placeholder"></div>
+          <h3 id="prj-tr">Taste Rater — Restaurant discovery</h3>
+          <p class="desc">Django app using Yelp API for search, reviews, and favorites; deployed on Heroku with Neon Postgres & S3.</p>
+          <div class="meta">
+            <span class="pill">Python</span><span class="pill">Django</span><span class="pill">Yelp API</span>
+            <span class="pill">Heroku</span><span class="pill">Neon</span><span class="pill">S3</span>
+          </div>
+          <div class="links">
+            <a class="btn primary" href="https://tasterater-51d5ecc29cf9.herokuapp.com" target="_blank" rel="noopener">Live Demo</a>
+            <a class="btn ghost" href="https://github.com/Daisybala/tasterater" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+
+        <!-- Calendar App -->
+        <article class="card" aria-labelledby="prj-cal">
+          <div class="thumb" role="img" aria-label="Calendar App screenshot placeholder"></div>
+          <h3 id="prj-cal">Calendar App — Tasks & events</h3>
+          <p class="desc">Node/Express + Mongo/Mongoose + EJS. OAuth login; day/week/month views; deployed on Heroku.</p>
+          <div class="meta">
+            <span class="pill">Node</span><span class="pill">Express</span><span class="pill">MongoDB</span>
+            <span class="pill">EJS</span><span class="pill">OAuth</span><span class="pill">Heroku</span>
+          </div>
+          <div class="links">
+            <a class="btn primary" href="https://calendar-2024-fcb433cb3fdb.herokuapp.com" target="_blank" rel="noopener">Live Demo</a>
+            <a class="btn ghost" href="https://github.com/Daisybala/calendar" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+
+        <!-- Super Hero Memory Game -->
+        <article class="card" aria-labelledby="prj-memo">
+          <div class="thumb" role="img" aria-label="Super Hero Memory Game screenshot placeholder"></div>
+          <h3 id="prj-memo">Super Hero Memory Game</h3>
+          <p class="desc">Vanilla JS card-matching game with dynamic grid, hover effects, music, and responsive layout.</p>
+          <div class="meta">
+            <span class="pill">JavaScript</span><span class="pill">HTML</span><span class="pill">CSS</span>
+            <span class="pill">GitHub Pages</span>
+          </div>
+          <div class="links">
+            <a class="btn primary" href="https://daisybala.github.io/concentration/" target="_blank" rel="noopener">Live Demo</a>
+            <a class="btn ghost" href="https://github.com/Daisybala/concentration" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+
+        <!-- Buy Buy Buy -->
+        <article class="card" aria-labelledby="prj-bbb">
+          <div class="thumb" role="img" aria-label="Buy Buy Buy screenshot placeholder"></div>
+          <h3 id="prj-bbb">Buy Buy Buy — Shopping prototype</h3>
+          <p class="desc">Simple shopping app with product listing and cart flow. Demonstrates UI state management and basic data handling.</p>
+          <div class="meta">
+            <span class="pill">JavaScript</span><span class="pill">React</span><span class="pill">Web App</span>
+          </div>
+          <div class="links">
+            <a class="btn ghost" href="https://github.com/Daisybala/buy-buy-buy" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <p>Python, Django, JavaScript, Node.js, Express, MongoDB, Postgres/Neon, AWS S3, Heroku, Git/GitHub, HTML, CSS.</p>
+    <section id="skills" aria-labelledby="sect-skills">
+      <h2 id="sect-skills">Skills</h2>
+      <div class="skills" aria-hidden="true">
+        <span class="chip">Python</span><span class="chip">Django</span><span class="chip">REST</span>
+        <span class="chip">Postgres/Neon</span><span class="chip">AWS S3</span>
+        <span class="chip">JavaScript</span><span class="chip">Node/Express</span>
+        <span class="chip">MongoDB/Mongoose</span><span class="chip">HTML/CSS/EJS</span>
+        <span class="chip">Heroku</span><span class="chip">Git/GitHub</span>
+      </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:qiliansong@gmail.com">qiliansong@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/Daisybala" target="_blank">Daisybala</a></p>
+    <section id="contact" aria-labelledby="sect-contact">
+      <h2 id="sect-contact">Contact</h2>
+      <p>Email: <a href="mailto:qiliansong@gmail.com">qiliansong@gmail.com</a> · GitHub: <a href="https://github.com/Daisybala" target="_blank" rel="noopener">@Daisybala</a></p>
     </section>
 
     <footer>
-      <span>© <script>document.write(new Date().getFullYear())</script> Daisy Song</span>
+      © <span id="y"></span> Daisy Song · Built with semantic HTML & a11y-friendly CSS
     </footer>
-  </div>
+  </main>
+
+  <script>
+    // Theme toggle with localStorage
+    (function(){
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initial = stored || (prefersDark ? 'dark' : 'light');
+      root.setAttribute('data-theme', initial);
+
+      btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
+
+    // Current year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
