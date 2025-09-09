@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daisy Song · Portfolio</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#0b0c10; color:#e9eef5; margin:0; }
+    .wrap { max-width:1000px; margin:auto; padding:20px; }
+    header, footer { display:flex; justify-content:space-between; align-items:center; }
+    nav a { color:#b7c0cc; margin-left:12px; text-decoration:none; }
+    h1,h2 { margin-top:0; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+    .card { background:#11131a; border-radius:12px; padding:16px; }
+    .btn { display:inline-block; margin-right:8px; padding:8px 12px; border-radius:6px;
+           text-decoration:none; font-weight:600; }
+    .live { background:#7fd1ae; color:#08120c; }
+    .ghost { border:1px solid #2a3345; color:#e9eef5; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Daisy Song</h1>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section>
+      <h2>About Me</h2>
+      <p>Full-stack developer & aspiring data scientist. GA SEI graduate (420+ hrs). Experienced in Python/Django, MERN stack, and cloud deployments.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Taste Rater</h3>
+          <p>Django + Yelp API app for restaurant discovery. Deployed on Heroku with Neon Postgres and S3.</p>
+          <a class="btn live" href="https://tasterater-51d5ecc29cf9.herokuapp.com" target="_blank">Live Demo</a>
+          <a class="btn ghost" href="https://github.com/Daisybala/tasterater" target="_blank">GitHub</a>
+        </div>
+        <div class="card">
+          <h3>Calendar App</h3>
+          <p>Node/Express + Mongo app for tasks & events. OAuth login, day/week/month views. Deployed to Heroku.</p>
+          <a class="btn live" href="https://calendar-2024-fcb433cb3fdb.herokuapp.com" target="_blank">Live Demo</a>
+          <a class="btn ghost" href="https://github.com/Daisybala/calendar" target="_blank">GitHub</a>
+        </div>
+        <div class="card">
+          <h3>Super Hero Memory Game</h3>
+          <p>Vanilla JS card matching game with animations and responsive design. Hosted on GitHub Pages.</p>
+          <a class="btn live" href="https://daisybala.github.io" target="_blank">Live Demo</a>
+          <a class="btn ghost" href="https://github.com/Daisybala/concentration" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <p>Python, Django, JavaScript, Node.js, Express, MongoDB, Postgres/Neon, AWS S3, Heroku, Git/GitHub, HTML, CSS.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:qiliansong@gmail.com">qiliansong@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/Daisybala" target="_blank">Daisybala</a></p>
+    </section>
+
+    <footer>
+      <span>© <script>document.write(new Date().getFullYear())</script> Daisy Song</span>
+    </footer>
+  </div>
+</body>
+</html>
