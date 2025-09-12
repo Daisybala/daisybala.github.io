@@ -1,4 +1,4 @@
-
+/* 
 :root{
   --bg:#0b1220; --fg:#e6e9f2; --muted:#94a3b8; --card:#111827; --btn:#2563eb; --ring:#3b82f6;
 }
@@ -46,3 +46,4 @@ footer{padding:30px 20px;color:var(--muted);text-align:center;border-top:1px sol
 
 /* light theme */
 .light{--bg:#f8fafc;--fg:#0f172a;--muted:#475569;--card:#ffffff}
+ */
