@@ -55,38 +55,44 @@ p.lead{color:var(--muted);line-height:1.7}
 .list li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);color:var(--muted)}
 .dot{width:6px;height:6px;border-radius:999px;background:var(--accent2)}
 /* === Carousel (taller, full-width, no crop top/bottom) === */
+/* CHANGED: 取消固定高/虚线边框/背景 */
 .screenshot.carousel{
-  height:auto;
-  background:transparent;   /* 去背景，消除左右“黑边”的感觉 */
-  border:none;
-  padding:0;
+  height: auto !important;      /* CHANGED: 不再限制高度 */
+  background: transparent;      /* CHANGED: 去掉深色/灰色底 */
+  border: none;                  /* CHANGED: 去掉虚线边框 */
+  padding: 0;                    /* CHANGED */
 }
+
 
 /* 设定一个响应式的高度：在不同屏幕上都“更高” */
 .carousel{
-  position:relative;
-  margin:18px 0;
-  border-radius:12px;
-  overflow:hidden;          /* 保持圆角 */
-  height:clamp(320px, 50vw, 640px);   /* ✅ 关键：提高图片显示高度 */
+  position: relative;
+  margin: 18px 0;
+  /* 不再设置固定 height 或 aspect-ratio，让图片自然决定高度 */
+  overflow: visible;            /* CHANGED: 避免容器裁切图像上下 */
+  border-radius: 12px;
 }
 
 /* 图片按容器高宽等比缩放，完整显示（不裁切顶部/底部） */
 .carousel img.slide{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:contain;       /* ✅ 显示完整图片，避免上下被裁 */
-  background:transparent;
-  display:none;             /* 只显示当前一张 */
+  position: static;             /* CHANGED */
+  display: none;                /* 只显示当前一张 */
+  width: 100%;                  /* 与卡片同宽 */
+  height: auto;                 /* 按比例自适应高度 */
+  object-fit: contain;          /* CHANGED: 显示完整图片，不裁切 */
+  border-radius: 12px;          /* 直接给图片圆角 */
+  background: transparent;      /* 没有左右黑边 */
 }
 .carousel img.slide.active{ display:block; }
 
 /* 导航与圆点保持不变，可略微下移避免压住图像关键区域 */
+/* 导航与圆点保持原样，必要时加 z-index 让按钮在图片之上 */
 .carousel .nav{
-  position:absolute; top:50%; transform:translateY(-50%);
-  width:44px; height:44px; border:none; border-radius:999px;
-  background:rgba(255,255,255,.92); color:#111; cursor:pointer;
-  font-size:26px; line-height:44px; box-shadow:0 2px 10px rgba(0,0,0,.15);
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border: none; border-radius: 999px;
+  background: rgba(255,255,255,.92); color: #111; cursor: pointer;
+  font-size: 26px; line-height: 44px; box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  z-index: 2;                   /* NEW: 确保在图片之上 */
 }
 .carousel .prev{ left:12px; } .carousel .next{ right:12px; }
 
