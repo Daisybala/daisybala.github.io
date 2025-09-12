@@ -189,7 +189,33 @@
       </div>
     </section>
 
-    <!-- Contact -->
+    <section id="contact" class="contact" aria-labelledby="sect-contact">
+      <h2 id="sect-contact">Contact Me</h2>
+      <p>I'm always eager to explore new opportunities and take on exciting projects. If you have a project in mind, or just want to say hi, feel free to send me a message.</p>
+    
+      <form class="contact-form" action="https://formspree.io/f/xeoldake" method="POST">
+        <div class="grid-two">
+          <input name="name" placeholder="Your name" autocomplete="name" required>
+          <input type="email" name="email" placeholder="Your email" autocomplete="email" required>
+        </div>
+        <input name="subject" placeholder="Subject (optional)">
+        <textarea name="message" rows="6" placeholder="Your message" required></textarea>
+    
+        <!-- 可选：自定义主题、反垃圾、人类验证/成功跳转 -->
+        <input type="hidden" name="_subject" value="Portfolio contact from daisybala.github.io">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://daisybala.github.io/#contact-thanks">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+    
+        <button class="btn visit" type="submit">Send message →</button>
+        <p class="muted small" style="margin-top:8px">
+          Or email me at <a href="mailto:qiliansong@gmail.com">qiliansong@gmail.com</a>.
+        </p>
+      </form>
+    </section>
+
+
+<!--     <!-- Contact -->
     <section id="contact" class="contact" aria-labelledby="sect-contact">
       <h2 id="sect-contact">Contact Me</h2>
       <p>I'm always eager to explore new opportunities and take on exciting projects. If you have a project in mind, or just want to say hi, feel free to send me a message.</p>
@@ -213,7 +239,7 @@
         </p>
       </form>
       <!-- ✅ 表单结束 -->
-    </section>
+    </section> -->
 
 
     <footer>
