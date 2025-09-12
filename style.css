@@ -191,6 +191,35 @@ footer{
   color:var(--muted);
   text-align:center;
 }
+/* === Contact form === */
+.contact-form{ max-width:680px; display:grid; gap:12px; }
+.contact-form .grid-two{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+}
+.contact-form input,
+.contact-form textarea{
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--ink);
+  outline:none;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{ color:var(--muted); }
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color: transparent;
+  box-shadow:0 0 0 2px var(--accent2);
+}
+.contact-form button.btn{ align-self:start; }
+.small{ font-size:12px; }
+.muted{ color:var(--muted); }
+
+@media (max-width:640px){
+  .contact-form .grid-two{ grid-template-columns:1fr; }
+}
+
 
 /* =========================
    Responsive
