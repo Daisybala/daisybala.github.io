@@ -1,4 +1,214 @@
+/* =========================
+   Theme & tokens
+   ========================= */
+:root{
+  --bg:#f9fafb;         /* page background */
+  --panel:#ffffff;      /* card/panel background */
+  --ink:#1e293b;        /* main text */
+  --muted:#64748b;      /* secondary text */
+  --line:rgba(2,8,23,.08); /* borders */
+  --accent:#38bdf8;     /* cyan */
+  --accent2:#0ea5e9;    /* blue-cyan */
+  --radius:14px;        /* roundness */
+}
+[data-theme="dark"]{
+  --bg:#0b1020;
+  --panel:#0e1428;
+  --ink:#e6edf7;
+  --muted:#a9b3c7;
+  --line:rgba(148,163,184,.20);
+  --accent:#7dd3fc;
+  --accent2:#22d3ee;
+}
 
+/* =========================
+   Base
+   ========================= */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+}
+img{max-width:100%;height:auto} /* 全站兜底：图片按比例缩放 */
+.container{max-width:1000px;margin:0 auto;padding:24px}
+
+/* =========================
+   Header / Nav
+   ========================= */
+header{
+  position:sticky;top:0;z-index:50;
+  background:linear-gradient(90deg,#e0f2fe,#f0fdf4);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--accent2)}
+.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-weight:600}
+.nav a:hover{color:var(--accent2)}
+.toggle{border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 10px;border-radius:999px;cursor:pointer}
+
+/* =========================
+   Sections & type
+   ========================= */
+section{margin:40px 0}
+h1{font-size:clamp(28px,5vw,40px);margin:8px 0 4px}
+h2{font-size:22px;margin:0 0 16px;color:var(--accent2)}
+p.lead{color:var(--muted);line-height:1.7}
+
+/* =========================
+   Hero
+   ========================= */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  text-align:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;
+  border-radius:8px;padding:10px 16px;font-size:14px;cursor:pointer;transition:all .2s ease
+}
+.btn.github{background:#1f2937;color:#fff}
+.btn.github:hover{background:#111827}
+.btn.contact{background:#f1f5f9;color:#111827;border:1px solid #cbd5e1}
+.btn.contact:hover{background:#e2e8f0}
+.btn.visit{background:var(--accent2);color:#fff}
+.btn.visit:hover{background:#0284c7}
+.btn.gh-link{background:#f1f5f9;color:#111827;border:1px solid #cbd5e1}
+.btn.gh-link:hover{background:#e2e8f0}
+
+/* =========================
+   Project card
+   ========================= */
+.project{
+  margin-bottom:56px;              /* 更高的卡片间距 */
+  padding:32px 26px;               /* 更高的卡片内边距 */
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(0,0,0,.06);
+}
+.project h3{margin:4px 0;font-size:20px;color:var(--ink)}
+.project time{font-size:14px;color:var(--muted)}
+.project p{color:var(--muted);line-height:1.6}
+
+/* =========================
+   Screenshot (generic)
+   - 非轮播的占位可保持框线
+   ========================= */
+.screenshot{
+  margin:16px 0;
+  background:#f1f5f9;
+  border:1px dashed var(--line);
+  border-radius:12px;
+  padding:16px;
+  color:var(--muted);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+}
+
+/* =========================
+   Carousel (full-width, auto-height, no crop, no side bars)
+   - 应用于带图片的项目：.screenshot.carousel
+   ========================= */
+.screenshot.carousel{
+  background:transparent;  /* 去掉占位背景与边框 */
+  border:none;
+  padding:0;
+}
+
+/* 容器不设固定高/比例，由图片自然撑开 */
+.carousel{
+  position:relative;
+  margin:18px 0;
+  border-radius:12px;
+  overflow:visible;        /* 不裁切图片上下 */
+}
+
+/* 图片：与卡片同宽、原比例完整显示，不被裁切 */
+.carousel img.slide{
+  position:static;         /* 参与文档流，容器随图片增高 */
+  display:none;            /* 仅显示当前一张 */
+  width:100%;
+  height:auto;
+  object-fit:contain;      /* 完整显示，避免上下被截 */
+  border-radius:12px;
+  background:transparent;  /* 无左右黑边 */
+}
+.carousel img.slide.active{display:block}
+
+/* 导航与圆点 */
+.carousel .nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:44px; height:44px; border:none; border-radius:9999px;
+  background:rgba(255,255,255,.92); color:#111; cursor:pointer;
+  font-size:26px; line-height:44px; box-shadow:0 2px 10px rgba(0,0,0,.15);
+  z-index:2;
+}
+.carousel .prev{left:12px}
+.carousel .next{right:12px}
+
+.carousel .dots{
+  position:absolute; left:0; right:0; bottom:12px;
+  display:flex; justify-content:center; gap:8px; z-index:2;
+}
+.carousel .dot{
+  width:10px; height:10px; border:none; border-radius:9999px;
+  background:rgba(0,0,0,.28); cursor:pointer;
+}
+.carousel .dot.active{background:rgba(0,0,0,.6)}
+
+/* =========================
+   Grids & lists
+   ========================= */
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.panel h3{color:var(--ink)}
+.list{margin:0;padding:0;list-style:none}
+.list li{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 0;border-bottom:1px dashed var(--line);color:var(--muted)
+}
+.dot{width:6px;height:6px;border-radius:999px;background:var(--accent2)}
+
+/* =========================
+   Footer
+   ========================= */
+footer{
+  margin:30px 0;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  text-align:center;
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width:1000px){
+  .hero{grid-template-columns:1fr}
+  .cols{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .cols{grid-template-columns:1fr}
+}
+
+
+
+
+
+
+/* 
 :root{
   --bg:#f9fafb;--panel:#ffffff;--ink:#1e293b;--muted:#64748b;--line:rgba(2,8,23,.08);
   --accent:#38bdf8;--accent2:#0ea5e9;--radius:14px;
@@ -213,4 +423,5 @@ footer{padding:30px 20px;color:var(--muted);text-align:center;border-top:1px sol
 
 /* light theme */
 .light{--bg:#f8fafc;--fg:#0f172a;--muted:#475569;--card:#ffffff}
+ */
  */
