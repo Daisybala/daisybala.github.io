@@ -40,7 +40,7 @@ p.lead{color:var(--muted);line-height:1.7}
 .btn.gh-link{background:#f1f5f9;color:#111827;border:1px solid #cbd5e1}
 .btn.gh-link:hover{background:#e2e8f0}
 
-.project{margin-bottom:48px;padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,.05)}
+.project{margin-bottom:56px;padding:28px 24px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,.05)}
 .project h3{margin:4px 0;font-size:20px;color:var(--ink)}
 .project time{font-size:14px;color:var(--muted)}
 .project p{color:var(--muted);line-height:1.6}
