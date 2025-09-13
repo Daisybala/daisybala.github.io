@@ -138,3 +138,71 @@
     }
   });
 })();
+/* ===============================
+   Tag icons via Simple Icons CDN
+   =============================== */
+(function addTagIcons() {
+  // 关键词到 Simple Icons 的 slug 与品牌色（hex）的映射
+  const MAP = {
+    'javascript':      ['javascript','F7DF1E'],
+    'typescript':      ['typescript','3178C6'],
+    'python':          ['python','3776AB'],
+    'react':           ['react','61DAFB'],
+    'next.js':         ['nextdotjs','000000'],
+    'node':            ['nodedotjs','339933'],
+    'express':         ['express','000000'],
+    'django':          ['django','092E20'],
+    'mongodb':         ['mongodb','47A248'],
+    'postgres':        ['postgresql','4169E1'],
+    'sql':             ['postgresql','4169E1'], // 泛指时用 PG 图标
+    'pandas':          ['pandas','150458'],
+    'databricks':      ['databricks','FF3621'],
+    'openai':          ['openai','000000'],
+    'beautifulsoup':   null,                     // 没有官方品牌，跳过
+    'yelp api':        ['yelp','FF1A1A'],
+    'heroku':          ['heroku','430098'],
+    'aws s3':          ['amazons3','FF9900'],
+    's3':              ['amazons3','FF9900'],
+    'vercel':          ['vercel','000000'],
+    'netlify':         ['netlify','00C7B7'],
+    'github':          ['github','181717'],
+    'docker':          ['docker','2496ED'],
+    'figma':           ['figma','F24E1E'],
+    'neon':            ['neon','00E599'],        // Neon serverless Postgres
+  };
+
+  // 归一化函数：统一小写、去多余空格和斜杠
+  const norm = (s) => s.toLowerCase().replace(/\s*\/\s*/g, ' / ').replace(/\s+/g, ' ').trim();
+
+  document.querySelectorAll('.tags .tag').forEach(tag => {
+    const label = norm(tag.textContent || '');
+    // 直接命中；或用一些常见别名再匹配一次
+    let hit = MAP[label];
+    if (!hit) {
+      // 别名与模糊匹配
+      const aliases = {
+        'js':'javascript',
+        'ts':'typescript',
+        'node.js':'node',
+        'mongodb atlas':'mongodb',
+        'postgresql':'postgres',
+        'github pages':'github',
+        'oauth':'auth0',   // 如果你真有 Auth0 标签可加映射
+      };
+      const ali = aliases[label];
+      if (ali && MAP[ali]) hit = MAP[ali];
+    }
+    if (!hit) return; // 没映射就跳过
+
+    const [slug, color] = hit;
+    const img = new Image();
+    img.className = 'ico';
+    img.alt = '';
+    img.setAttribute('aria-hidden','true');
+    img.src = color
+      ? `https://cdn.simpleicons.org/${slug}/${color}`
+      : `https://cdn.simpleicons.org/${slug}`;
+    tag.classList.add('has-icon');
+    tag.prepend(img);
+  });
+})();
