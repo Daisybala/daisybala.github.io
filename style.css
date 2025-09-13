@@ -291,6 +291,8 @@ footer{
   transform: translateY(-50%) scale(1.03);
   box-shadow: none !important;
 }
+/* Remove bottom oval bar (dots) */
+.carousel .dots{ display: none !important; }
 
 
 
