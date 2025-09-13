@@ -222,6 +222,7 @@ footer{
   display: inline-flex;
   align-items: center;
   gap: 8px;               /* icon 与文字间距 */
+  margin: 10px
 }
 .tag .ico {
   width: 16px;
