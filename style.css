@@ -197,7 +197,20 @@ p.lead{color:var(--muted);line-height:1.7}
 .carousel .prev{ left:12px }
 .carousel .next{ right:12px }
 
-/* Dots with subtle glass backplate */
+/* Minimal arrow style */
+.carousel .nav{
+  background:transparent !important;
+  border:1px solid var(--ctrl-border) !important;
+  color:var(--ctrl-ink) !important;
+  box-shadow:none !important;
+}
+.carousel .nav:hover{
+  transform:translateY(-50%) scale(1.03);
+  box-shadow:0 0 0 3px color-mix(in oklab, var(--accent2) 22%, transparent);
+}
+
+
+/* /* Dots with subtle glass backplate */
 .carousel .dots{
   position:absolute; left:0; right:0; bottom:12px;
   display:flex; justify-content:center; gap:10px; z-index:2;
@@ -220,7 +233,7 @@ p.lead{color:var(--muted);line-height:1.7}
 .carousel .dot.active{
   background:var(--accent2);
   transform:scale(1.25);
-}
+} */
 
 /* =========================
    Grids & lists
