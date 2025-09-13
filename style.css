@@ -529,8 +529,42 @@ footer{
 @media (max-width:640px){
   .cols{grid-template-columns:1fr}
 }
-
-
-
-
  */
+/* === OVERRIDE: text-only arrows (no bg, no border) === */
+.carousel .nav{
+  all: unset;                                 /* 先把之前的样式全部清空 */
+  position: absolute; top: 50%; transform: translateY(-50%);
+  display: inline-block;
+  cursor: pointer;
+  z-index: 2;
+
+  /* 仅文字样式 */
+  font: inherit;
+  font-size: 32px;        /* 可按需调大/调小 */
+  line-height: 1;
+  font-weight: 800;
+  color: #ffffff;         /* 深色图上更显眼；想跟随主题可改为 var(--ink) */
+
+  /* 彻底去掉默认按钮外观 */
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0;
+  margin: 0;
+}
+.carousel .prev{ left: 10px; }
+.carousel .next{ right: 10px; }
+
+/* 可选：交互时仅做轻微缩放，不加任何描边/光晕 */
+.carousel .nav:hover{ transform: translateY(-50%) scale(1.05); }
+.carousel .nav:active{ transform: translateY(-50%) scale(0.98); }
+/* 也去掉键盘焦点外圈 */
+.carousel .nav:focus,
+.carousel .nav:focus-visible{ outline: none; }
+
+/* 如果仍看到底部椭圆背板，干掉它 */
+.carousel .dots{ display: none !important; }
+
