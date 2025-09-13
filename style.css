@@ -79,7 +79,7 @@ p.lead{color:var(--muted);line-height:1.7}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
 .btn{
   display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;
-  border-radius:8px;padding:10px 16px;font-size:14px;cursor:pointer;transition:all .2s ease
+  margin: 20px 10px;border-radius:8px;padding:10px 16px;font-size:14px;cursor:pointer;transition:all .2s ease
 }
 .btn.github{background:#1f2937;color:#fff}
 .btn.github:hover{background:#111827}
