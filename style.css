@@ -46,7 +46,7 @@ header{
 }
 .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--accent2)}
-.avatar{width:400px;height:400px;border-radius:0;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
 .nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-weight:600}
 .nav a:hover{color:var(--accent2)}
 .toggle{border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 10px;border-radius:999px;cursor:pointer}
