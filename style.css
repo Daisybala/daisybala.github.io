@@ -151,8 +151,8 @@ p.lead{color:var(--muted);line-height:1.7}
 /* 导航与圆点 */
 .carousel .nav{
   position:absolute; top:50%; transform:translateY(-50%);
-  width:44px; height:44px; border:none; border-radius:9999px;
-  background:rgba(255,255,255,.92); color:#111; cursor:pointer;
+  height:44px; border:none; border-radius:9999px;
+  background:rgba(255,255,255,.33); color:#111; cursor:pointer;
   font-size:26px; line-height:44px; box-shadow:0 2px 10px rgba(0,0,0,.15);
   z-index:2;
 }
