@@ -554,6 +554,7 @@ footer{
   border-radius: 0 !important;
   padding: 0;
   margin: 0;
+  backdrop-filter: none !important;
 }
 .carousel .prev{ left: 10px; }
 .carousel .next{ right: 10px; }
@@ -567,40 +568,7 @@ footer{
 
 /* 如果仍看到底部椭圆背板，干掉它 */
 .carousel .dots{ display: none !important; }
-/* ==== Place arrows in the visual middle of the bottom pill ==== */
-/* 先确保椭圆（dots）在底部 */
-.carousel .dots{
-  position:absolute; left:0; right:0; bottom:12px;
-  display:flex; justify-content:center; gap:10px; z-index:2;
-  padding:6px 10px;                      /* 这两行决定椭圆高度 */
-  border-radius:9999px;
-}
 
-/* 箭头改为贴近底部，并与椭圆纵向居中重合 */
-.carousel .nav{
-  top:auto !important;                   /* 不再按容器中线定位 */
-  bottom: calc(12px + (10px + 12px)/2) !important; 
-  /* 解释：12px 是 .dots 的 bottom；
-     10px 是圆点直径（.dot 的 height）；
-     12px 是上下 padding（6px + 6px）；
-     这个 calc= 12 + (10+12)/2 ≈ 23px，基本就是椭圆的中线 */
-  transform: translateY(50%) !important; /* 让纯文本箭头按自身高度微调到椭圆中线 */
-  z-index:3 !important;                  /* 压在椭圆之上 */
-  background:transparent !important;
-  border:none !important;
-  box-shadow:none !important;
-  color:#111 !important;                 /* 椭圆是浅色时，用深色箭头 */
-  text-shadow:none !important;
-  padding:0 6px;
-  line-height:1;
-}
-
-/* 左右位置保持两侧 */
-.carousel .prev{ left:10px !important; }
-.carousel .next{ right:10px !important; }
-
-/* 如果你的 .dot 大小或 .dots 的 padding 改动过，
-   调这个 bottom 的 calc 里 10 和 12 让它精确居中。*/
 
 
 
