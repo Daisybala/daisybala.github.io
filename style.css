@@ -217,6 +217,28 @@ footer{
 .small{ font-size:12px; }
 .muted{ color:var(--muted); }
 /* Remove carousel dots bar entirely */
+/* Icons inside tags */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;               /* icon 与文字间距 */
+}
+.tag .ico {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  flex: 0 0 16px;
+  vertical-align: -2px;
+  border-radius: 3px;     /* 某些方形 logo 更好看 */
+}
+/* 如果用了我之前的 .tag::before 小光点，有图标时隐藏它 */
+.tag.has-icon::before{ display:none; }
+
+/* 深色模式下略提亮（可选） */
+[data-theme="dark"] .tag .ico {
+  filter: brightness(1.05) saturate(1.05);
+}
+
 @media (max-width:640px){
   .contact-form .grid-two{ grid-template-columns:1fr; }
 }
