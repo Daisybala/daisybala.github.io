@@ -168,8 +168,6 @@ p.lead{color:var(--muted);line-height:1.7}
 .carousel .nav{
   position:absolute; top:50%; transform:translateY(-50%);
   width:48px; height:48px;
-  border:1px solid var(--ctrl-border);
-  border-radius:9999px;
   background:var(--ctrl-bg);
   color:var(--ctrl-ink);
   cursor:pointer;
