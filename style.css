@@ -211,28 +211,7 @@ p.lead{color:var(--muted);line-height:1.7}
 
 
 /* /* Dots with subtle glass backplate */
-.carousel .dots{
-  position:absolute; left:0; right:0; bottom:12px;
-  display:flex; justify-content:center; gap:10px; z-index:2;
-  padding:6px 10px;
-  background:var(--ctrl-bg);
-  border:1px solid var(--ctrl-border);
-  backdrop-filter: blur(6px) saturate(140%);
-  border-radius:9999px;
-  box-shadow:0 2px 12px rgba(0,0,0,.10);
-}
-.carousel .dot{
-  width:10px; height:10px; border-radius:9999px; border:0;
-  background:rgba(0,0,0,.28); cursor:pointer;
-  transition:transform .15s ease, background-color .15s ease;
-}
-[data-theme="dark"] .carousel .dot{
-  background:rgba(255,255,255,.35);
-}
-.carousel .dot:hover{ transform:scale(1.15) }
-.carousel .dot.active{
-  background:var(--accent2);
-  transform:scale(1.25);
+
 } */
 
 /* =========================
@@ -283,9 +262,7 @@ footer{
 .small{ font-size:12px; }
 .muted{ color:var(--muted); }
 /* Remove carousel dots bar entirely */
-.carousel .dots{
-  display: none !important;
-}
+
 
 
 @media (max-width:640px){
