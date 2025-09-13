@@ -507,6 +507,10 @@ footer{
 .contact-form button.btn{ align-self:start; }
 .small{ font-size:12px; }
 .muted{ color:var(--muted); }
+/* Remove carousel dots bar entirely */
+.carousel .dots{
+  display: none !important;
+}
 
 @media (max-width:640px){
   .contact-form .grid-two{ grid-template-columns:1fr; }
